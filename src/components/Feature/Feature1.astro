@@ -1,0 +1,77 @@
+---
+/**
+ * * These are small cards with icons, titles, and text
+ * This looks best with an even number of cards. They are smaller to
+ * use with more cards in the same section. 4 or 6 cards is probably ideal
+ *
+ * ! If you can an error for an icon like "Error: Not Found: "calendar-check" in pack "tabler",
+ * ! You can copy to actual SVG into src/icons and name it however and use similar to below
+ */
+
+// components
+import FeatureCard from "@components/FeatureCard/FeatureCardSmall.astro";
+
+interface FeatureData {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+// data
+const featureData: FeatureData[] = [
+  {
+    icon: "tabler-calendar-check",
+    title: "Website Development",
+    text: `Craft the perfect online presence with a website designed to match your brand's vision and drive user engagement.`,
+  },
+
+  {
+    icon: "tabler:layout-grid",
+    title: "Analytics Solutions",
+    text: `Leverage detailed insights from our analytics dashboards to optimize your strategies and enhance performance.`,
+  },
+
+  {
+    icon: "tabler:heart",
+    title: "Custom Software",
+    text: `Get tailored software solutions that meet your industry-specific needs, enhancing functionality and scalability.`,
+  },
+
+  {
+    icon: "tabler:wand",
+    title: "Process Automation",
+    text: `Automate and optimize your business processes to save time, reduce costs, and increase productivity.`,
+  },
+
+  {
+    icon: "tabler:api-app",
+    title: "Software Support",
+    text: `Maintain high performance and security with our dedicated software support and maintenance services.`,
+  },
+
+  {
+    icon: "tabler:brand-twitter",
+    title: "Social Media Management",
+    text: `Boost your digital presence with strategic social media management. We handle your platforms to ensure engagement and growth.`,
+  },
+];
+---
+
+<section id="feature1" class="my-12 md:my-24">
+  <div class="container">
+    <div class="grid gap-6 sm:grid-cols-2 md:py-8 lg:grid-cols-3">
+      {
+        featureData.map((feature, idx) => (
+          <FeatureCard
+            title={feature.title}
+            text={feature.text}
+            icon={feature.icon}
+            data-aos="fade-up"
+            data-aos-delay={0.15 * idx}
+            data-aos-trigger="#feature1"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

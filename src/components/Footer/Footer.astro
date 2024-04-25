@@ -1,0 +1,77 @@
+---
+// components
+import FooterLink from "@components/Footer/FooterLink.astro";
+import SiteLogo from "@components/SiteLogo/SiteLogo.astro";
+import Button from "@components/Button/Button.astro";
+
+// data
+import siteData from "@config/siteData.json";
+
+const today = new Date();
+---
+
+<div class="mt-20 border-t border-t-base-300 dark:border-t-base-600/60">
+  <footer class="container m-auto w-full pb-6">
+    <div
+      class="flex w-full flex-col justify-between gap-4 sm:flex-row sm:gap-10"
+    >
+      <div class="mt-6 flex flex-col items-start gap-2">
+        <SiteLogo />
+      </div>
+      <!-- <p>Sign up for our newsletter</p>
+        <form
+          id="newsletter-form"
+          name="newsletter-form"
+          class="mr-auto mt-1 flex max-w-lg gap-3"
+        >
+          <label
+            for="newsletter-email"
+            class="description mb-1 hidden text-base-100">*Email</label
+          >
+          <input
+            type="email"
+            class="form__input"
+            name="newsletter-email"
+            id="newsletter-email"
+            inputmode="email"
+            placeholder="Email"
+            required
+          />
+
+          <Button variant="primary" type="submit">Subscribe</Button>
+        </form>
+      </div> -->
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+        <!-- Navigation -->
+        <div class="flex flex-col">
+          <h3 class="mb-2 mt-6 text-lg font-semibold">Navigation</h3>
+          <FooterLink href="/projects/">Projects</FooterLink>
+          <FooterLink href="/overview/">Overview</FooterLink>
+          <FooterLink href="/about/">About</FooterLink>
+          <FooterLink href="/contact/">Contact</FooterLink>
+        </div>
+
+        <!-- Legal -->
+        <div class="flex flex-col">
+          <h3 class="mb-2 mt-6 text-lg font-semibold">Legal</h3>
+          <FooterLink href="#" newTab={true}> Privacy policy </FooterLink>
+          <FooterLink href="#" newTab={true}> Support </FooterLink>
+        </div>
+
+        <!-- Github -->
+        <div class="flex flex-col">
+          <h3 class="mb-2 mt-6 text-lg font-semibold">Github</h3>
+          <FooterLink href="https://github.com/aschzczdo" newTab={true}>
+            @aschzczdo
+          </FooterLink>
+          <FooterLink href="#" newTab={true}> @danieljuan1998 </FooterLink>
+        </div>
+      </div>
+    </div>
+    <hr class="my-6 border-base-300 dark:border-base-600/60" />
+    <div class="text-sm text-base-100/60">
+      &copy; {today.getFullYear()}
+      {" "}{siteData.name}.
+    </div>
+  </footer>
+</div>
