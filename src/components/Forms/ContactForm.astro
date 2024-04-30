@@ -13,6 +13,7 @@ import Button from "@components/Button/Button.astro";
     class="absolute left-0 top-0 -z-10 mx-auto aspect-square w-[60%] bg-primary-600/70 blur-3xl"
   >
   </div>
+  <div id="notification" class="fixed right-5 top-5 flex flex-col space-y-2 z-50"></div>
 
   <!-- center card -->
   <div class="relative z-10 p-1">
@@ -116,28 +117,38 @@ import Button from "@components/Button/Button.astro";
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contact-form");
+    const submitButton = form.querySelector("button[type='submit']");  // Ensure your button is correctly targeted
+    const notificationContainer = document.getElementById("notification");
 
-    // Check if 'form' is truly an HTMLFormElement
+    function showNotification(message, success = true) {
+      const notification = document.createElement('div');
+      notification.className = `p-4 w-64 rounded-lg shadow-lg text-white ${success ? 'bg-green-500' : 'bg-red-500'}`;
+      notification.textContent = message;
+      notificationContainer.appendChild(notification);
+      setTimeout(() => {
+        notificationContainer.removeChild(notification);
+        submitButton.disabled = false;  // Re-enable the button after showing the notification
+        submitButton.classList.remove('cursor-not-allowed', 'opacity-50');  // Make the button look clickable again
+      }, 5000);
+    }
+
     if (form instanceof HTMLFormElement) {
       form.addEventListener("submit", async function (event) {
         event.preventDefault();
-
-        // 'form' is now confirmed to be non-null and an HTMLFormElement
+        submitButton.disabled = true;  // Disable the button immediately when the form is submitted
+        submitButton.classList.add('cursor-not-allowed', 'opacity-50');  // Make the button look disabled
         const formData = new FormData(form);
-
         const response = await fetch("/api/sendmail", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(Object.fromEntries(formData.entries())),
         });
 
         if (response.ok) {
-          alert("Thank you for your message. We will be in touch soon!");
+          showNotification("Thank you for your message. We will be in touch soon!");
           form.reset();
         } else {
-          alert("Failed to send message. Please try again later.");
+          showNotification("Failed to send message. Please try again later.", false);
         }
       });
     } else {
