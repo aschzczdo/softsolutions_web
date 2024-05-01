@@ -13,7 +13,11 @@ import Button from "@components/Button/Button.astro";
     class="absolute left-0 top-0 -z-10 mx-auto aspect-square w-[60%] bg-primary-600/70 blur-3xl"
   >
   </div>
-  <div id="notification" class="fixed right-5 top-5 flex flex-col space-y-2 z-50"></div>
+  <div
+    id="notification"
+    class="fixed right-5 top-5 z-50 flex flex-col space-y-2"
+  >
+  </div>
 
   <!-- center card -->
   <div class="relative z-10 p-1">
@@ -115,44 +119,72 @@ import Button from "@components/Button/Button.astro";
   </div>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contact-form");
-    const submitButton = form.querySelector("button[type='submit']");  // Ensure your button is correctly targeted
+  function showNotification(message, success = true) {
     const notificationContainer = document.getElementById("notification");
-
-    function showNotification(message, success = true) {
-      const notification = document.createElement('div');
-      notification.className = `p-4 w-64 rounded-lg shadow-lg text-white ${success ? 'bg-green-500' : 'bg-red-500'}`;
-      notification.textContent = message;
-      notificationContainer.appendChild(notification);
-      setTimeout(() => {
-        notificationContainer.removeChild(notification);
-        submitButton.disabled = false;  // Re-enable the button after showing the notification
-        submitButton.classList.remove('cursor-not-allowed', 'opacity-50');  // Make the button look clickable again
-      }, 5000);
+    if (!notificationContainer) {
+      console.error("Notification container not found");
+      return;
     }
 
+    const notification = document.createElement("div");
+    notification.className = `p-4 w-64 rounded-lg shadow-lg text-white ${
+      success ? "bg-green-500" : "bg-red-500"
+    }`;
+    notification.textContent = message;
+    notificationContainer.appendChild(notification);
+
+    // Automatically remove the notification after 5 seconds
+    setTimeout(() => {
+      notificationContainer.removeChild(notification);
+    }, 4250);
+  }
+
+  function setupForm() {
+    const form = document.getElementById("contact-form");
     if (form instanceof HTMLFormElement) {
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-        submitButton.disabled = true;  // Disable the button immediately when the form is submitted
-        submitButton.classList.add('cursor-not-allowed', 'opacity-50');  // Make the button look disabled
-        const formData = new FormData(form);
-        const response = await fetch("/api/sendmail", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(Object.fromEntries(formData.entries())),
-        });
+      // Ensure form is correctly identified as HTMLFormElement
+      const submitButton = form.querySelector("button[type='submit']");
+      if (submitButton instanceof HTMLButtonElement) {
+        // Ensure button is correctly identified as HTMLButtonElement
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          submitButton.disabled = true;
+          submitButton.classList.add("opacity-50", "cursor-not-allowed");
 
-        if (response.ok) {
-          showNotification("Thank you for your message. We will be in touch soon!");
-          form.reset();
-        } else {
-          showNotification("Failed to send message. Please try again later.", false);
-        }
-      });
+          const formData = new FormData(form);
+          try {
+            const response = await fetch("/api/sendmail", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(Object.fromEntries(formData.entries())),
+            });
+
+            if (response.ok) {
+              showNotification(
+                "Thank you for your message. We will be in touch soon!",
+              );
+              form.reset();
+            } else {
+              throw new Error("Failed to send the message.");
+            }
+          } catch (error) {
+            showNotification(
+              error.message || "An error occurred. Please try again later.",
+            );
+          } finally {
+            submitButton.disabled = false;
+            submitButton.classList.remove("opacity-50", "cursor-not-allowed");
+          }
+        });
+      } else {
+        console.error("Submit button not found or is not a button.");
+      }
     } else {
-      console.error("Form element not found or is not a form!");
+      console.error("The form was not found on this page or is not a form.");
     }
-  });
+  }
+
+  // Reinitialize the form setup every time the page or content is loaded or transitioned.
+  document.addEventListener("DOMContentLoaded", setupForm);
+  document.addEventListener("astro:after-swap", setupForm);
 </script>
