@@ -92,7 +92,12 @@ import navData from "@config/navData.json";
           <div
             class="flex w-full justify-between pl-4 md:block md:w-fit md:pl-0"
           >
-            <Button variant="primary" href="/contact/">Contact us</Button>
+            <Button
+              variant="primary"
+              href="/contact/"
+              onclick="window.location='/contact/'; return false;"
+              >Contact us</Button
+            >
             <ThemeToggle class="block md:hidden" />
           </div>
         </div>
