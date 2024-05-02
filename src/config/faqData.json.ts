@@ -9,24 +9,32 @@ export const faqData: FaqItem[] = [
     answer: `SoftSolutions specializes in custom web development and software application services, designed to meet each client's unique needs. We also provide comprehensive maintenance and social network management to enhance your SEO and digital presence, ensuring your business achieves its full digital potential.`,
   },
   {
-    question: "How can SoftSolutions help digitalize my company?",
-    answer: `Our expert team at SoftSolutions leverages cutting-edge technologies to transform your business operations digitally. From developing bespoke websites to creating efficient software solutions and managing your social media presence, we cover all aspects to ensure a smooth digital transition.`,
+    question: "¿Qué servicios ofrece SoftSolutions?",
+    answer: `SoftSolutions se especializa en servicios de desarrollo web personalizados y aplicaciones de software, diseñados para satisfacer las necesidades únicas de cada cliente. También brindamos mantenimiento integral y gestión de redes sociales para mejorar su SEO y presencia digital, asegurando que su empresa alcance su máximo potencial digital.`,
   },
   {
-    question: "What makes SoftSolutions unique in web development?",
-    answer: `At SoftSolutions, our approach to web development is fully customized. We don't just build websites; we create tailored solutions that integrate seamlessly with your business processes, helping to enhance functionality and drive engagement.`,
+    question: "¿Cómo SoftSolutions puede ayudar a mi empresa a digitalizarse?",
+    answer: `SoftSolutions ofrece soluciones digitales personalizadas que se adaptan a las necesidades específicas de su empresa. Nuestros servicios de desarrollo web y aplicaciones de software están diseñados para mejorar la eficiencia y la productividad, permitiéndole aprovechar al máximo las oportunidades digitales y mantenerse competitivo en el mercado.`,
   },
   {
-    question: "Can SoftSolutions handle both front-end and back-end development?",
-    answer: `Yes, our team is proficient in both front-end and back-end development, ensuring a full-stack solution. Whether you need a visually appealing front-end interface or complex back-end processes, we have the expertise to deliver comprehensive and robust applications.`,
+    question: "¿Ofreceis tanto desarrollo front-end como back-end?",
+    answer: `Sí, nuestro equipo es competente tanto en el desarrollo front-end como en el back-end, garantizando una solución full-stack. Ya sea que necesite una interfaz front-end visualmente atractiva o procesos back-end complejos, tenemos la experiencia para ofrecer aplicaciones completas y robustas.`,
   },
   {
-    question: "What support does SoftSolutions offer post-development?",
-    answer: `SoftSolutions provides ongoing support and maintenance services to ensure your applications and websites run smoothly and remain updated. Our support includes regular updates, security patches, and performance checks, along with timely troubleshooting and assistance.`,
+    question: "¿Qué mantenimiento y soporte ofrece SoftSolutions post-venta?",
+    answer: `Ofrecemos servicios de mantenimiento y soporte continuos para garantizar que su aplicación o sitio web funcione sin problemas. Nuestro equipo de expertos está disponible para resolver problemas, realizar actualizaciones y brindar asistencia técnica en cualquier momento, asegurando que su solución digital esté siempre en óptimas condiciones.`,
   },
   {
-    question: "How does SoftSolutions enhance my company's digital presence?",
-    answer: `We use strategic social network management and SEO techniques to elevate your online visibility. Our services ensure that your brand not only gains exposure but also builds a significant digital footprint, attracting more traffic and engagement.`,
+    question: "¿Cómo SoftSolutions puede mejorar la visibilidad de mi marca en línea?",
+    answer: `Utilizamos estrategias de SEO y gestión de redes sociales para mejorar la visibilidad de su marca en línea. Nuestros servicios de marketing digital están diseñados para aumentar el tráfico a su sitio web, mejorar su clasificación en los motores de búsqueda y aumentar la conciencia de la marca en línea, ayudándole a alcanzar a su audiencia objetivo y atraer nuevos clientes.`,
+  },
+  {
+    question: "¿Por qué elegir SoftSolutions?",
+    answer: "Somos una startup formada por gente joven con más de cuatro años de experiencia. Nos apasiona lo que hacemos por eso lo hacemos como lo hacemos. Nos esforzamos por ofrecer soluciones digitales innovadoras y de alta calidad que ayuden a nuestros clientes a alcanzar sus objetivos comerciales y a destacarse en el mercado."
+  },
+  {
+    question: "¿Cómo puedo contactar con vosotros?",
+    answer: "Arriba a la derecha puede observar un boton de contacto, al hacer click en él se le redirigirá a un formulario de contacto."
   },
 ];
 
